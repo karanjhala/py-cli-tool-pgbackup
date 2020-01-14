@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-with open('README.md', 'r' as f:
+with open('README.md', 'r') as f:
         long_description = f.read()
 
 setup(
@@ -11,7 +11,14 @@ setup(
     description = 'A utility for backing up PostgreSQL databases.',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
-    url = ''
-    packages = find_packages('src')
+    url = '',
+    packages = find_packages('src'),
+    package_dir={'':'src'},
+    install_requires=['boto3'],
+    entry_points={
+        'console_scripts' : [
+            'pgbackup=pgbackup.cli:main'
+        ],
+    }
 )
 
